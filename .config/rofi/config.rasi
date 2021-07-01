@@ -1,0 +1,9 @@
+configuration {
+	theme: "./nord.rasi";
+}
+/** Basic config file **/
+
+configuration {
+  show-icons:         true;
+  icon-theme:         "Papirus";
+}

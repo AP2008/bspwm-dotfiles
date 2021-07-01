@@ -1,0 +1,309 @@
+[colors]
+nord0 = #2E3440
+nord1 = #3B4252
+nord2 = #434C5E
+nord3 = #4C566A
+nord4 = #D8DEE9
+nord5 = #E5E9F0
+nord6 = #ECEFF4
+nord7 = #8FBCBB
+nord8 = #88C0D0
+nord9 = #81A1C1
+nord10 = #5E81AC
+nord11 = #BF616A
+nord12 = #D08770
+nord13 = #EBCB8B
+nord14 = #A3BE8C
+nord15 = #B48EAD
+
+[bar/top1]
+bottom = false
+width = 30%
+offset-x = 5%
+background = ${colors.nord3}
+foreground = ${colors.nord4}
+modules-center  = memory temperature cpu filesystem network speed
+line-size = 3
+wm-restack = bspwm
+font-0 = Iosevka Term,Iosevka Nerd Font:style=Regular:size=13
+
+[bar/top2]
+bottom = false
+width = 20%
+offset-x = 40%
+background = ${colors.nord3}
+foreground = ${colors.nord4}
+modules-center  = title
+line-size = 3
+wm-restack = bspwm
+font-0 = Iosevka Term,Iosevka Nerd Font:style=Regular:size=13
+
+[bar/top3]
+bottom = false
+width = 15%
+offset-x = 70%
+background = ${colors.nord3}
+foreground = ${colors.nord4}
+modules-center = date
+line-size = 3
+wm-restack = bspwm
+font-0 = Iosevka Term,Iosevka Nerd Font:style=Regular:size=13
+
+[bar/bottom1]
+bottom = true
+width = 30%
+offset-x = 5%
+background = ${colors.nord3}
+foreground = ${colors.nord4}
+modules-center = pulseaudio player previous playpause next
+line-size = 3
+wm-restack = bspwm
+font-0 = Iosevka Term,Iosevka Nerd Font:style=Heavy,Regular:size=15
+
+[bar/bottom2]
+bottom = true
+width = 20%
+offset-x = 40%
+background = ${colors.nord3}
+foreground = ${colors.nord4}
+modules-center = bspwm
+line-size = 3
+wm-restack = bspwm
+font-0 = Iosevka Term,Iosevka Nerd Font:style=Heavy,Regular:size=15
+
+[bar/bottom3]
+bottom = true
+width = 15%
+offset-x = 70%
+background = ${colors.nord3}
+foreground = ${colors.nord4}
+modules-center = windowtype
+modules-right = powermenu
+line-size = 3
+wm-restack = bspwm
+font-0 = Iosevka Term,Iosevka Nerd Font:style=Regular:size=13
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %d %b %Y
+time = %H:%M:%S
+label = %date% %time%
+label-foreground = ${colors.nord6}
+format-underline = ${colors.nord8}
+format-padding = 2
+
+[module/temperature]
+type = internal/temperature
+
+thermal-zone = 3
+base-temperature = 20
+warn-temperature = 70
+
+format = <ramp> <label>
+format-warn = <label-warn>
+
+label-warn =  %temperature-c%
+label-warn-padding = 1
+label-warn-foreground = ${colors.nord7}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+
+
+ramp-0-foreground = ${colors.nord14}
+ramp-1-foreground = ${colors.nord14}
+ramp-2-foreground = ${colors.nord14}
+ramp-3-foreground = ${colors.nord12}
+ramp-4-foreground = ${colors.nord11}
+
+
+[module/title]
+type = internal/xwindow
+label = %title:0:30:...%
+format-foreground = ${colors.nord7}
+format-underline = ${colors.nord7}
+format-padding = 4
+
+
+[module/memory]
+type = internal/memory
+interval = 3
+
+format = <ramp-used> <label>
+
+label = %gb_used%
+
+ramp-used-0 = 
+ramp-used-0-foreground = ${colors.nord14}
+
+ramp-used-1 = 
+ramp-used-1-foreground = ${colors.nord12}
+
+ramp-used-2 = 
+ramp-used-2-foreground = ${colors.nord11}
+
+format-padding = 1
+
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+
+format = <ramp-load> <label>
+
+ramp-load-0 = 
+ramp-load-0-foreground = ${colors.nord14}
+
+ramp-load-1 = 
+ramp-load-1-foreground = ${colors.nord14}
+
+ramp-load-2 = 
+ramp-load-2-foreground = ${colors.nord11}
+format-padding = 1
+
+[module/filesystem]
+type = internal/fs
+mount-0 = /home
+interval = 10
+format-mounted = %{F#EBCB8B} %{F#ECEFF4}<label-mounted>
+label-mounted = %mountpoint% %percentage_used%%
+
+[module/bspwm]
+type = internal/bspwm
+
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;
+ws-icon-5 = VI;
+ws-icon-6 = VII;
+ws-icon-7 = VIII;
+ws-icon-8 = IX;
+ws-icon-9 = X;
+
+label-focused = 
+label-focused-foreground = ${colors.nord7}
+label-focused-padding = 1
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.nord9}
+label-occupied-padding = 1
+
+label-empty = %icon%
+label-empty-foreground = ${colors.nord9}
+label-empty-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.nord11}
+label-urgent-padding = 1
+
+[module/previous]
+type = custom/text
+content = "  玲  "
+click-left = export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu > /dev/null ; playerctl previous
+
+
+[module/next]
+type = custom/text
+content = "  怜"
+click-left = export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu > /dev/null ; playerctl next
+
+[module/playpause]
+type = custom/script
+interval = 0.2
+format = <label>
+label = %output%
+exec = sh scripts/playpause.sh
+click-left = export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu > /dev/null ; playerctl play-pause
+
+[module/speed]
+type = custom/script
+interval = 0.1
+label = %{F#8FBCBB}%{F#ECEFF4}%output%
+exec = sh scripts/info-hackspeed.sh
+tail = true
+
+[module/player]
+type = custom/script
+interval = 0.1
+format-padding= 2
+format = %{F#A3BE8C}  %{F#ECEFF4}<label>
+label = %output%
+exec = export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu > /dev/null ; playerctl metadata --format "{{ trunc(title, 15) }} - {{ trunc(artist, 15) }}" |  sed "s/\\- Remastered.* \\-/-/"
+
+[module/windowtype]
+type = custom/script
+interval = 0.1
+format = <label>
+label = %output%
+exec = bspc query -T -n | jq -r '.client.state' | tr [:lower:] [:upper:]
+label-foreground = ${colors.nord6}
+format-underline = ${colors.nord8}
+format-padding = 2
+
+[module/network]
+type = internal/network
+interface = wlp2s0
+interval = 1
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+
+label-disconnected = 
+label-disconnected-foreground = ${colors.nord11}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 直
+ramp-signal-3 = 直
+
+ramp-signal-0-foreground = ${colors.nord14}
+
+ramp-signal-1-foreground = ${colors.nord14}
+ramp-signal-2-foreground = ${colors.nord13}
+ramp-signal-3-foreground = ${colors.nord12}
+format-connected-padding=1
+format-disconnected-padding=1
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+label-open = 
+label-open-foreground = ${colors.nord11}
+label-open-background = ${colors.nord9}
+label-open-padding = 3
+label-close = 
+label-close-foreground = ${colors.nord11}
+label-close-background = ${colors.nord9}
+label-close-padding = 4
+
+menu-0-0 = 
+menu-0-0-foreground = ${colors.nord11}
+menu-0-0-padding = 1
+menu-0-0-exec = shutdown -h now
+menu-0-1 = 
+menu-0-1-foreground = ${colors.nord12}
+menu-0-1-padding = 1
+menu-0-1-exec = reboot
+menu-0-2 = 
+menu-0-2-padding = 1
+menu-0-2-foreground = ${colors.nord11}
+menu-0-2-exec = bspc quit
+
+[module/pulseaudio]
+type = custom/script
+tail = true
+format-underline = ${colors.nord9}
+label-padding = 2
+exec = scripts/pulseaudio-control.bash --icons-volume " , " --icon-muted " " output | sed -r "s/(.*) Sink.*/\\1/g"
+click-right = exec pavucontrol &
+click-left = scripts/pulseaudio-control.bash togmute
+scroll-up = scripts/pulseaudio-control.bash --volume-max 100 up
+scroll-down = scripts/pulseaudio-control.bash --volume-max 100 down
